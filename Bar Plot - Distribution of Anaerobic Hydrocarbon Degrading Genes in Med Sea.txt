@@ -1,0 +1,46 @@
+# Set working directory
+setwd("~/data/Yogita/Heat Map Cas and Med Sea/")
+
+# Read in the data
+genes <- read.csv(file = "~/data/Yogita/Heat Map Cas and Med Sea/gtdb Heat map Med sea Anaerobic .csv", sep = ',')
+
+# Define the custom color palette
+# Define the custom color palette with unique colors for each taxonomy
+
+Color_Palette <- c(
+  "#ff69b4", "#004949", "#009292", "wheat", "#ffb6db", "#4682b4", "blue", 
+  "lightblue", "#DAA520", "cyan", "orange", "darkgray", "#924900", "#db6d00", 
+  "#FFFF00", "#B22222", "#32CD32", "#FF7F50", "#FFD700", "#ff4500", "#1E90FF", 
+  "#daa520", "#8b4513", "#d2691e"
+)
+
+# Filter the data for aerobic metabolism only
+genes_anaerobic <- genes %>% 
+  filter(Metabolism == "Anaerobic_hydrocarbon")
+
+# Reorder the Metagenome levels explicitly based on the desired sequence
+genes_anaerobic$Metagenome <- factor(genes_anaerobic$Metagenome, 
+                                     levels = c("M1_0-4", "M1_4-8", "M1_8-12", 
+                                                "M1_12-16", "M1_16-20", "M1_20-24"))
+
+
+# Group the data by Metagenome and Taxonomy (Phylum) and sum the number of genes for each group
+genes_grouped <- genes_anaerobic %>%
+  group_by(Metagenome, Taxonomy) %>%
+  summarise(Total_Genes = sum(Number_Genes, na.rm = TRUE)) %>%
+  ungroup()
+
+# Create a stacked bar plot with Metagenome on x-axis and Total_Genes on y-axis, filled by Taxonomy
+ggplot(genes_grouped, aes(x = Metagenome, y = Total_Genes, fill = Taxonomy)) +
+  geom_bar(stat = "identity", position = "stack") +
+  theme_minimal() +
+  labs(title = "Distribution of Anaerobic Hydrocarbon-Degrading Genes in Mediterranean Sea Metagenomes", 
+       x = "Mediterranean Sea Sediment Samples", 
+       y = "Total Number of Anaerobic Genes", 
+       fill = "Taxonomy") +
+  scale_fill_manual(values = Color_Palette) +  # Apply the custom color palette
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.text.y = element_text(size = 15),  # Adjust font size if necessary
+    panel.grid = element_blank()  # Removes grid lines for a cleaner look
+  )

@@ -1,0 +1,257 @@
+1. superior - 1A
+ Superior1A_MG_paired_R1.fq.gz   Superior1A_MG_paired_R2.fq.gz
+
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Superior_1A --gzip-compressed ~/data/JGI_Caspian/Superior-1A/de_novo_assembly/Superior1A_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Superior-1A/de_novo_assembly/Superior1A_MG_paired_R2.fq.gz > superior_1Ataxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Superior_1A -l G -o Superior_1A_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Superior_1A -l P -o Superior_1A_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Superior_1A -l C -o Superior_1A_Class.bracken
+
+2. BI
+BI_paired_R1.fq.gz BI_paired_R2.fq.gz 
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report BI_1 --gzip-compressed ~/data/JGI_Caspian/BI_1/de_novo_assembly/BI_paired_R1.fq.gz  ~/data/JGI_Caspian/BI_1/de_novo_assembly/BI_paired_R2.fq.gz > BI_1taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i BI_1 -l G -o BI_1_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i BI_1 -l P -o BI_1_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i BI_1 -l C -o BI_1_Class.bracken
+
+3. Cas core1 0-4
+Caspian_Core_1_0-4_cm_MG_paired_R1.fq.gz Caspian_Core_1_0-4_cm_MG_paired_R2.fq.gz 
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Cas_0-4 --gzip-compressed ~/data/JGI_Caspian/Cas_Core_1_0-4/de_novo_assembly/Caspian_Core_1_0-4_cm_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Cas_Core_1_0-4/de_novo_assembly/Caspian_Core_1_0-4_cm_MG_paired_R2.fq.gz > Cas_0-4taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas_0-4 -l G -o Cas_0-4_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas_0-4 -l P -o Cas_0-4_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas_0-4 -l C -o Cas_0-4_Class.bracken
+
+4. Cas core1 4 -8
+
+Caspian_Core_1_4-8_cm_MG_paired_R1.fq.gz Caspian_Core_1_4-8_cm_MG_paired_R2.fq.gz
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Cas_4-8 --gzip-compressed ~/data/JGI_Caspian/Cas_Core_1_4-8/de_novo_assembly/Caspian_Core_1_4-8_cm_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Cas_Core_1_4-8/de_novo_assembly/Caspian_Core_1_4-8_cm_MG_paired_R2.fq.gz > Cas_4-8taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas_4-8  -l G -o Cas_4-8_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas_4-8  -l P -o Cas_4-8_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas_4-8  -l C -o Cas_4-8_Class.bracken
+
+5. Cas core2 0-4
+Caspian_Core_2_0-4_cm_MG_paired_R1.fq.gz Caspian_Core_2_0-4_cm_MG_paired_R2.fq.gz 
+
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Cas2_0-4 --gzip-compressed ~/data/JGI_Caspian/Cas_Core_2_0-4/de_novo_assembly/Caspian_Core_2_0-4_cm_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Cas_Core_2_0-4/de_novo_assembly/Caspian_Core_2_0-4_cm_MG_paired_R2.fq.gz > Cas2_0-4taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas2_0-4 -l G -o Cas2_0-4_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas2_0-4 -l P -o Cas2_0-4_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas2_0-4 -l C -o Cas2_0-4_Class.bracken
+
+6. Cas core2 4-8
+
+Caspian_Core_2_4-8_cm_MG_paired_R1.fq.gz Caspian_Core_2_4-8_cm_MG_paired_R2.fq.gz
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Superior_1A --gzip-compressed ~/data/JGI_Caspian/Superior-1A/de_novo_assembly/Superior1A_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Superior-1A/de_novo_assembly/Superior1A_MG_paired_R2.fq.gz > superior_1Ataxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Superior_1A -l G -o Superior_1A_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Superior_1A -l P -o Superior_1A_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Superior_1A -l C -o Superior_1A_Class.bracken
+
+7. Cas core2 8-12
+Caspian_Core_2_8-12_cm_MG_paired_R1.fq.gz Caspian_Core_2_8-12_cm_MG_paired_R2.fq.gz
+
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Superior_1A --gzip-compressed ~/data/JGI_Caspian/Superior-1A/de_novo_assembly/Superior1A_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Superior-1A/de_novo_assembly/Superior1A_MG_paired_R2.fq.gz > superior_1Ataxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Superior_1A -l G -o Superior_1A_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Superior_1A -l P -o Superior_1A_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Superior_1A -l C -o Superior_1A_Class.bracken
+
+8. Cas core2 12-16
+
+Caspian_Core_2_12-16_cm_MG_paired_R1.fq.gz   Caspian_Core_2_12-16_cm_MG_paired_R2.fq.gz
+
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Caspian2_12-16 --gzip-compressed ~/data/JGI_Caspian/Cas_Core_2_12-16/de_novo_assembly/Caspian_Core_2_12-16_cm_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Cas_Core_2_12-16/de_novo_assembly/Caspian_Core_2_12-16_cm_MG_paired_R2.fq.gz > Caspian_12-16taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Superior_1A -l G -o Superior_1A_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Superior_1A -l P -o Superior_1A_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Superior_1A -l C -o Superior_1A_Class.bracken
+
+
+9. Cas core2 20-24
+Caspian_Core_2_20-24_cm_MG_paired_R1.fq.gz  Caspian_Core_2_20-24_cm_MG_paired_R2.fq.gz
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Cas_20-24 --gzip-compressed ~/data/JGI_Caspian/Cas_Core_2_20-24/de_novo_assembly/Caspian_Core_2_20-24_cm_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Cas_Core_2_20-24/de_novo_assembly/Caspian_Core_2_20-24_cm_MG_paired_R2.fq.gz > Cas_20-24taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas_20-24 -l G -o Cas_20-24_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas_20-24 -l P -o Cas_20-24_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas_20-24 -l C -o Cas_20-24_Class.bracken
+
+
+10. Cas core2 30-35
+
+Caspian_Core_2_32-35_cm_MG_paired_R1.fq.gz  Caspian_Core_2_32-35_cm_MG_paired_R2.fq.gz
+
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Cas_32-35 --gzip-compressed ~/data/JGI_Caspian/Cas_Core_2_32-35/de_novo_assembly/Caspian_Core_2_32-35_cm_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Cas_Core_2_30-35/de_novo_assembly/Caspian_Core_2_32-35_cm_MG_paired_R2.fq.gz > Cas_32-35taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas_32-35 -l G -o Cas_32-35_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas_32-35 -l P -o Cas_32-35_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Cas_32-35 -l C -o Cas_32-35_Class.bracken
+
+11. Elm 13
+
+Elm_Creek_HM_13_MG_paired_R1.fq.gz  Elm_Creek_HM_13_MG_paired_R2.fq.gz
+
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Elm_13 --gzip-compressed ~/data/JGI_Caspian/Elm_Creek_HM_13/de_novo_assembly/Elm_Creek_HM_13_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Elm_Creek_HM_13/de_novo_assembly/Elm_Creek_HM_13_MG_paired_R2.fq.gz > Elm_13taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Elm_13  -l G -o Elm_13 _Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Elm_13  -l P -o Elm_13 _Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Elm_13  -l C -o Elm_13 _Class.bracken
+
+12. Elm 14
+
+HM_14_MG_paired_R1.fq.gz  HM_14_MG_paired_R2.fq.gz
+
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Elm_14 --gzip-compressed ~/data/JGI_Caspian/Elm_Creek_HM_14/de_novo_assembly/HM_14_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Elm_Creek_HM_14/de_novo_assembly/HM_14_MG_paired_R2.fq.gz > Elm_14taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Elm_14  -l G -o Elm_14 _Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Elm_14  -l P -o Elm_14 _Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Elm_14  -l C -o Elm_14 _Class.bracken
+
+
+13. Med 1 0-4
+Mediterranean_Core_1_0-4_cm_MG_paired_R1.fq.gz Mediterranean_Core_1_0-4_cm_MG_paired_R2.fq.gz
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Med_0-4 --gzip-compressed ~/data/JGI_Caspian/Med_Core_1_0-4/de_novo_assembly/Mediterranean_Core_1_0-4_cm_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Med_Core_1_0-4/de_novo_assembly/Mediterranean_Core_1_0-4_cm_MG_paired_R2.fq.gz > Med_0-4taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_0-4 -l G -o Med_0-4_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_0-4 -l P -o Med_0-4_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_0-4 -l C -o Med_0-4_Class.bracken
+
+14. Med 1 4-8
+
+Mediterranean_Core_1_4-8_cm_MG_paired_R1.fq.gz  Mediterranean_Core_1_4-8_cm_MG_paired_R2.fq.gz
+
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Med_4-8 --gzip-compressed ~/data/JGI_Caspian/Med_Core_1_4-8/de_novo_assembly/Mediterranean_Core_1_4-8_cm_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Med_Core_1_4-8/de_novo_assembly/Mediterranean_Core_1_4-8_cm_MG_paired_R2.fq.g > Med_4-8taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_4-8 -l G -o Med_4-8_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_4-8 -l P -o Med_4-8_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_4-8 -l C -o Med_4-8_Class.bracken
+
+
+15. Med 1 8-12
+
+Mediterranean_Core_1_8-12_cm_MG_paired_R1.fq.gz  Mediterranean_Core_1_8-12_cm_MG_paired_R2.fq.gz
+
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Med_8-12 --gzip-compressed ~/data/JGI_Caspian/Med_Core_1_8-12/de_novo_assembly/Mediterranean_Core_1_8-12_cm_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Med_Core_1_8-12/de_novo_assembly/Mediterranean_Core_1_8-12_cm_MG_paired_R2.fq.gz > Med_8-12taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_8-12 -l G -o Med_8-12_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_8-12 -l P -o Med_8-12_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_8-12 -l C -o Med_8-12_Class.bracken
+
+
+16. Med 1 12-16
+
+Mediterranean_Core_1_12-16_cm_MG_paired_R1.fq.gz  Mediterranean_Core_1_12-16_cm_MG_paired_R2.fq.gz
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Med_12-16 --gzip-compressed ~/data/JGI_Caspian/Med_Core_1_12-16/de_novo_assembly/Mediterranean_Core_1_12-16_cm_MG_paired_R1.fq.gz   ~/data/JGI_Caspian/Med_Core_1_12-16/de_novo_assembly/Mediterranean_Core_1_12-16_cm_MG_paired_R2.fq.gz > Med_12-16taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_12-16 -l G -o Med_12-16_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_12-16 -l P -o Med_12-16_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_12-16 -l C -o Med_12-16_Class.bracken
+
+
+17. Med 1 16-20
+
+Mediterranean_Core_1_16-20_cm_MG_paired_R1.fq.gz  Mediterranean_Core_1_16-20_cm_MG_paired_R2.fq.gz
+
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Med_16-20 --gzip-compressed ~/data/JGI_Caspian/Med_Core_1_16-20/de_novo_assembly/Mediterranean_Core_1_16-20_cm_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Superior-1A/de_novo_assembly/Mediterranean_Core_1_16-20_cm_MG_paired_R2.fq.gz > Med_16-20taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_16-20 -l G -o Med_16-20_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_16-20 -l P -o Med_16-20_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_16-20 -l C -o Med_16-20_Class.bracken
+
+
+18. Med 1 20-24
+
+Mediterranean_Core_1_20-24_cm_MG_paired_R1.fq.gz  Mediterranean_Core_1_20-24_cm_MG_paired_R2.fq.gz
+
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Med_20-24 --gzip-compressed ~/data/JGI_Caspian/Med_Core_1_20-24/de_novo_assembly/Mediterranean_Core_1_20-24_cm_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Med_Core_1_20-24/de_novo_assembly/Mediterranean_Core_1_20-24_cm_MG_paired_R2.fq.gz > Med_20-24taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_20-24 -l G -o Med_20-24_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_20-24 -l P -o Med_20-24_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_20-24 -l C -o Med_20-24_Class.bracken
+
+
+19. Med 1 24-28
+
+Mediterranean_Core_1_24-28_cm_MG_paired_R1.fq.gz  Mediterranean_Core_1_24-28_cm_MG_paired_R2.fq.gz
+
+kraken2 --use-names --threads 4 -db /data/home/sharedDatabases/kraken_db/  --report Med_24-28 --gzip-compressed ~/data/JGI_Caspian/Med_Core_1_24-28/de_novo_assembly/Mediterranean_Core_1_24-28_cm_MG_paired_R1.fq.gz  ~/data/JGI_Caspian/Med_Core_1_24-28/de_novo_assembly/Mediterranean_Core_1_24-28_cm_MG_paired_R2.fq.gz > Med_24-28taxa.kraken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Emma2 -l G -o Emma2_Genus.bracken
+
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_24-28 -l G -o Med_24-28_Genus.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_24-28 -l P -o Med_24-28_Phylum.bracken
+bracken -d /data/home/sharedDatabases/kraken_db/ -i Med_24-28 -l C -o Med_24-28_Class.bracken
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

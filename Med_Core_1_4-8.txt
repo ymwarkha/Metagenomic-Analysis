@@ -1,0 +1,64 @@
+Mediterranean_Core_1_4-8_cm_MG_R1.fq.gz  Mediterranean_Core_1_4-8_cm_MG_R2.fq.gz
+
+ 
+fastqc Mediterranean_Core_1_4-8_cm_MG_R1.fq.gz
+fastqc Mediterranean_Core_1_4-8_cm_MG_R2.fq.gz
+
+
+trimmomatic PE -phred33 Mediterranean_Core_1_4-8_cm_MG_R1.fq.gz Mediterranean_Core_1_4-8_cm_MG_R2.fq.gz Mediterranean_Core_1_4-8_cm_MG_paired_R1.fq.gz Mediterranean_Core_1_4-8_cm_MG_unpaired_R1.fq.gz Mediterranean_Core_1_4-8_cm_MG_paired_R2.fq.gz Mediterranean_Core_1_4-8_cm_MG_unpaired_R2.fq.gz ILLUMINACLIP:/home/campus14/smtechtm/miniconda3/pkgs/trimmomatic-0.39-hdfd78af_2/share/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+
+mkdir de_novo_assembly
+cp *.fq.gz de_novo_assembly
+
+Run this command in de novo assembly
+megahit -1 Mediterranean_Core_1_4-8_cm_MG_paired_R1.fq.gz -2 Mediterranean_Core_1_4-8_cm_MG_paired_R2.fq.gz -r Mediterranean_Core_1_4-8_cm_MG_unpaired_R1.fq.gz, Mediterranean_Core_1_4-8_cm_MG_unpaired_R2.fq.gz -o Mediterranean_Core_1_4-8_cm_MG_megahit
+
+
+mkdir reference - Run this command in de novo assembly
+quast megahit_out/final.contigs.fa -o Mediterranean_Core_1_4-8_cm_MG_QUAST_output
+
+Run this command in de novo assembly
+bowtie2-build megahit_out/final.contigs.fa reference/Mediterranean_Core_1_4-8_cm_MG_denov
+
+bowtie2 -x reference/Mediterranean_Core_1_4-8_cm_MG_denov -1 Mediterranean_Core_1_4-8_cm_MG_paired_R1.fq.gz -2 Mediterranean_Core_1_4-8_cm_MG_paired_R2.fq.gz -S reference/Mediterranean_Core_1_4-8_cm_MG_map.sam
+
+Run this command in reference directory
+samtools view -b Mediterranean_Core_1_4-8_cm_MG_map.sam |samtools sort -  > out.bam
+samtools index out.bam
+samtools rmdup out.bam out_dedup.bam
+samtools idxstats out_dedup.bam > coverage.txt
+
+run this command in de novo assembly
+jgi_summarize_bam_contig_depths --outputDepth depth.txt --pairedContigs paired.txt reference/*.bam
+
+mkdir bins
+Run this command in de novo assembly
+
+metabat -i megahit_out/final.contigs.fa -a depth.txt -o bins/bin_new --sensitive -v --saveTNF saved.tnf --saveDistance saved.gprob
+
+Run this command in de novo assembly
+checkm data setRoot /home/ymwarkha/miniconda3/envs/Applied_Genomics/checkm_data
+
+Run this command in bins
+for file in *.fa
+do 
+mv -- "$file" "${file%.fa}.fna"
+done
+
+Run this command in de novo assembly
+checkm lineage_wf bins/ checkm_out/ 
+
+Run this command in bins
+ for file in *.fna
+ do
+ a=`echo $file | sed s/\.fna//`
+ prokka --outdir "$a" --prefix "$a"  --hmm /data/home/ymwarkha/JGI_Caspian/CooS.hmm --metagenome   $file
+ done
+
+Run this command in de novo assembly
+CAT bins -b bins -d ~/../../data/home/sharedDatabases/CAT/2021-01-07_CAT_database/ -t ~/../../data/home/sharedDatabases/CAT/2021-01-07_CAT_taxonomy/
+ CAT add_names -i out.BAT.bin2classification.txt -o Med_4-8.txt -t ~/../../data/home/sharedDatabases/CAT/2021-01-07_CAT_taxonomy
+
+grep "Carbon monoxide" */*.*.faa
+
+

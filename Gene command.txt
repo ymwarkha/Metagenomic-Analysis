@@ -1,0 +1,212 @@
+grep "Carbon monoxide" */*.*.faa
+
+grep "Mercuric reductase" */*.*.faa
+
+
+Aerobic
+
+grep "monooxygenase" */*.*.faa
+
+Propane
+grep "Propane 2-monooxygenase" */*.*.faa
+
+Butane
+grep "membrane-bound alkane monooxygenase" */*.*.faa
+grep "soluble alkane monooxygenase" */*.*.faa
+
+Alkane c5-c13(AlkB)
+grep "alkane hydrolase" */*.*.faa
+grep "alkane oxidizing cytochrome P450" */*.*.faa
+
+Alkane c20-c35
+grep "flavin-binding alkane monooxygenase" */*.*.faa
+
+Alkane c15-c35
+grep "long-chain alkane hydrolase" */*.*.faa
+
+Toluene
+grep "Toluene-4-monooxygenase" */*.*.faa
+
+Monoaromatic
+grep "monoaromatic dioxygenases alpha/beta" */*.*.faa
+
+
+Phenol/Toluene (Toluene-ortho-monooxygenase)
+
+grep "phenol/toluene monooxygenase/hydroxylase" */*.*.faa
+grep "phenol/toluene 2-monooxygenase" */*.*.faa
+
+grep "Phenol hydroxylase" */*.*.faa
+
+Naphthalene
+grep "benzene/toluene/naphtalene dioxygenase subunit" */*.*.faa
+grep "similar to benzene/toluene/naphtalene dioxygenase subunit" */*.*.faa
+
+Dibenzothiophene
+grep "dibenzothiophene monooxygenase" */*.*.faa
+
+Anaerobic
+
+n-alkane
+grep "alkylsuccinate synthase" */*.*.faa
+
+n-alkane (Ahya - Putative alkane C2 methylene hydroxylase)
+grep "molybdopterin-family alkane C2 methylene hydroxylase" */*.*.faa
+
+
+Ethylbenzene ( EbdA - Ethylbenzene dehydrogenase)
+grep "molybdopterin-family ethylbenzene dehydrogenase subunit alpha" */*.*.faa
+
+Benzene/Toluene (BssA/lbsA - Benzylasuccinate synthase)
+grep "benzylsuccinate synthase" */*.*.faa
+
+2-methyl-naphthalene (NmsA - 2-Naphthylmethyl-sucinate synthase)
+grep "naphtylmethyl succinate synthase" */*.*.faa
+
+
+Benzene
+grep "benzene carboxylase" */*.*.faa
+
+
+Naphthalene
+grep "naphtalene carboxylase" */*.*.faa
+
+
+
+Commands for non binned
+grep "Carbon monoxide" nonbinned.faa -c
+
+grep "Propane 2-monooxygenase" nonbinned.faa -c
+grep "alkane hydrolase" nonbinned.faa -c
+grep "alkane oxidizing cytochrome P450" nonbinned.faa -c
+grep "flavin-binding alkane monooxygenase" nonbinned.faa -c
+grep "long-chain alkane hydrolase" nonbinned.faa -c
+grep "Toluene-4-monooxygenase" nonbinned.faa -c
+grep "monoaromatic dioxygenases alpha/beta" nonbinned.faa -c
+grep "phenol/toluene monooxygenase/hydroxylase" nonbinned.faa -c
+grep "phenol/toluene 2-monooxygenase" nonbinned.faa -c
+grep "Phenol hydroxylase" nonbinned.faa -c
+grep "benzene/toluene/naphtalene dioxygenase subunit" nonbinned.faa -c
+grep "similar to benzene/toluene/naphtalene dioxygenase subunit" nonbinned.faa -c
+grep "dibenzothiophene monooxygenase" nonbinned.faa -c
+
+
+
+
+grep "alkylsuccinate synthase" nonbinned.faa -c
+grep "molybdopterin-family alkane C2 methylene hydroxylase" nonbinned.faa -c
+grep "benzylsuccinate synthase" nonbinned.faa -c
+grep "naphtylmethyl succinate synthase" nonbinned.faa -c
+grep "benzene carboxylase" nonbinned.faa -c
+grep "molybdopterin-family ethylbenzene dehydrogenase subunit alpha" nonbinned.faa -c
+grep "naphtalene carboxylase" nonbinned.faa -c
+
+
+ 
+Commands for non binned
+
+CODH
+grep "Carbon monoxide" newnonbinned.faa -c
+
+
+Aerobic
+grep "Propane 2-monooxygenase" newnonbinned.faa -c
+grep "alkane hydrolase" newnonbinned.faa -c
+grep "alkane oxidizing cytochrome P450" newnonbinned.faa -c
+grep "flavin-binding alkane monooxygenase" newnonbinned.faa -c
+grep "long-chain alkane hydrolase" newnonbinned.faa -c
+grep "Toluene-4-monooxygenase" newnonbinned.faa -c
+grep "monoaromatic dioxygenases alpha/beta" newnonbinned.faa -c
+grep "phenol/toluene monooxygenase/hydroxylase" newnonbinned.faa -c
+grep "phenol/toluene 2-monooxygenase" newnonbinned.faa -c
+grep "Phenol hydroxylase" newnonbinned.faa -c
+grep "benzene/toluene/naphtalene dioxygenase subunit" newnonbinned.faa -c
+grep "similar to benzene/toluene/naphtalene dioxygenase subunit" newnonbinned.faa -c
+grep "dibenzothiophene monooxygenase" newnonbinned.faa -c
+
+
+
+Anarobic
+grep "alkylsuccinate synthase" newnonbinned.faa -c
+grep "molybdopterin-family alkane C2 methylene hydroxylase" newnonbinned.faa -c
+grep "benzylsuccinate synthase" newnonbinned.faa -c
+grep "naphtylmethyl succinate synthase" newnonbinned.faa -c
+grep "benzene carboxylase" newnonbinned.faa -c
+grep "molybdopterin-family ethylbenzene dehydrogenase subunit alpha" newnonbinned.faa -c
+grep "naphtalene carboxylase" newnonbinned.faa -c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+It seems this command worked
+
+prokka --force --outdir "prokka2" -prefix "nonbinned" -hmms ~/data/HMM/CANTHYD_CooS.hmm --metagenome megahit_out/final.contigs.fa
+
+prokka --cpus 0 --outdir "prokka2" -prefix "nonbinned" -hmms ~/data/HMM/CANTHYD_CooS.hmm --metagenome assembly.contigs.fasta 
+
+JGI data - 
+1. Download file and transfer.
+2. unzip Cas_MG_8_FD_download.zip
+ 1072  ls
+ 1073  cd Cas_MG_12/
+ 1074  ls
+ 1075  cd QC\ and\ Genome\ Assembly/
+ 1076  ls
+ 1077  cd JGI\ assembly\ of\:\ Metagenome\ Minimal\ Draft\ -\ Caspian_Core_2_0-4_cm_MG\,ASSEMBLY_DATE\=20210922/
+ 1078  ls
+ 1079  mv assembly.contigs.fasta ../../../
+ 1080  ls
+ 1081  cd ..
+ 1082  ls
+ 1083  prokka --cpus 0 --outdir "prokka2" -prefix "nonbinned" -hmms ~/data/HMM/CANTHYD_CooS.hmm --metagenome assembly.contigs.fasta
+ 1084  ls
+
+
+
+hmmscan --tblout filename.tsv CANTHYD_CooS.hmm filename.faa
+
+hmmscan --tblout ga0493986_proteins.tsv -hmms ~/data/HMM/CANTHYD_CooS.hmm 0493986_proteins.faa
+hmmscan --tblout=-hmms ~/data/HMM/CANTHYD_CooS.hmm 0493986_proteins.faa
+
+ga0493986_proteins.faa
+
+hmmscan --tblout=-hmms ~/data/HMM/CANTHYD_CooS.hmm Ga0493990_prodigal_proteins.faa
+
+
+hmmscan --tblout Ga0493990_prodigal_proteins.tsv -hmms ~/data/HMM/CANTHYD_CooS.hmm Ga0493990_prodigal_proteins.faa
+
+Med-0-4
+hmmscan --tblout Ga0493990_prodigal_proteins.tsv ~/data/HMM/CANTHYD_CooS.hmm Ga0493990_prodigal_proteins.faa
+Med-4-8
+
+hmmscan -E '1e-06' --tblout Ga0493991_prodigal_proteins.tsv ~/data/HMM/CANTHYD_CooS.hmm Ga0493991_prodigal_proteins.faa
+
+hmmscan -E '0.000000000001' --cpu 31 --tblout Ga0493991_prodigal_proteins.tsv ~/data/HMM/CANTHYD_CooS.hmm Ga0493991_prodigal_proteins.faa
+
+
+python hmmhitcount.py Ga0493990_prodigal_proteins.tsv
+
+
+hmmm
+
+In bins
+for file in *.fna;  do  a=`echo $file | sed s/\.fna//`;  prokka --force --outdir "$a" --prefix "$a"  --hmms '/data/home/ymwarkha/HMM/CANTHYD_CooS.hmm' --metagenome   $file;  done
+rm
+
+
+propane 2-monooxygenase 
+ttttgtttaactttaataaggagatataccATGAAGTTAGCGTTTGCCGGTAAAGGCGGCGCGGGGAAAACGACACTGACGGCGTGGACGGCGGATTACCTGGCCCGTCACGGCCACAACGTATGGCTGATCGATGCCGATACAGCACTGAGTCTTGGTCGCGCCTCCGGCTTGGCCAGAACAGATTTGCCGGCACCCCTTATTAATCGTCATGACATTATTATGGAACGCATTTCGAGCGGCTTAATAAACCTGACACCGGATGTGGAGGATCTGCCAGAGGCACTTAGTGTGGCAGTACCTCTGGGAGGCCCGACTGTAACGGGTGTTGCCGCAGGCAGGAAGCGCTTGCTGGTGATGGGCAGTATAACCCATGCCGGCGGCGGCTGCGCCTGTGAGGCAAATGCCTTACTCAAGGCACTCCTTGCTCATTTGGTTTATGATAGGGATGAATGGGTCCTGGTCGACCTTGAGGCCGGCGTGGAACACCTGGGTAGAGGTACTGTGGCAATGGTGGATGCTCTGGTTGTTGTATCGGAACCGAGCCTACGTAGTTTAGAAACAGCCAGTGAAATCAGCCAGCTGGCGACCGGTTTAGGCCTCCCGAGGCAAGTTCTTGCCCTGAATCGTCACTCCTGCAGCGGGATGCGGAATCGTCCGCTGGCTAGCTCCGATGCCACGGATGGGAAAGCTCTCCACACCTTGGCGCCAGCATTGGCACTGCCGGAACGGCGCGTGGCCATCCCTACCTTAGCAGGCTTACAGGAAAGGATGTTAGAGCACGCTCATGTCACAGGGCTCCCGGAGTCAGCCATGGTCGATGAGTTTGTGACCATGCTGCTTCAACAGGTTATGGAAAGCGCTCATACGAAACAATCGTTGGCCCCATCACGCGGCGTTTGCTGTGCGTAAtcgagtctggtaaagaaaccgctgctgcga
+
+
+

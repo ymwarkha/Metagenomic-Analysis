@@ -1,0 +1,7 @@
+
+
+
+
+
+gtdbtk classify_wf --genome_dir genomes/ -x fna --out_dir classify_wf_out --cpus 3 --mash_db /data/home/sharedDatabases/GTDB_DB/release220/
+

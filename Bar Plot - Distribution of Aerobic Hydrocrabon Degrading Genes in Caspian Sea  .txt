@@ -1,0 +1,48 @@
+# Set working directory
+setwd("~/data/Yogita/Heat Map Cas and Med Sea/")
+
+# Read in the data
+genes <- read.csv(file = "~/data/Yogita/Heat Map Cas and Med Sea/gtdb Heat map Cas sea Aerobic.csv", sep = ',')
+
+# Define the custom color palette
+Color_Palette <- c(
+  "#ff69b4", "#004949", "#009292", "wheat", "#ffb6db", "#4682b4", "blue", 
+  "lightblue", "#DAA520", "cyan", "orange", "darkgray", "#924900", "#db6d00", 
+  "#FFFF00", "#B22222", "#32CD32", "#FF7F50", "#FFD700", "#ff4500", "#1E90FF", 
+  "#daa520", "#8b4513", "#d2691e"
+)
+
+
+# Filter the data for aerobic metabolism only
+genes_aerobic <- genes %>% 
+  filter(Metabolism == "Aerobic_hydrocarbon")
+
+# Order the Metagenome levels explicitly (adjust based on your dataset)
+genes_aerobic$Metagenome <- factor(genes_aerobic$Metagenome, 
+                                   levels = c("C1_0-4", "C1_4-8", "C2_0-4", "C2_4-8", 
+                                              "C2_8-12", "C2_12-16", "C2_20-24", "C2_30-35"))
+
+# Group the data by Metagenome and Taxonomy (Phylum) and sum the number of genes for each group
+genes_grouped <- genes_aerobic %>%
+  group_by(Metagenome, Taxonomy) %>%
+  summarise(Total_Genes = sum(Number_Genes, na.rm = TRUE)) %>%
+  ungroup()
+
+# Create a stacked bar plot with Metagenome on x-axis and Total_Genes on y-axis, filled by Taxonomy
+ggplot(genes_grouped, aes(x = Metagenome, y = Total_Genes, fill = Taxonomy)) +
+  geom_bar(stat = "identity", position = "stack") +
+  theme_minimal() +
+  labs(title = "Distribution of Aerobic Hydrocarbon-Degrading Genes in Caspian Sea Metagenomes", 
+       x = "Caspian Sea Sediment Samples", 
+       y = "Total Number of Aerobic Genes", 
+       fill = "Taxonomy") +
+  scale_fill_manual(values = Color_Palette) +  # Apply the custom color palette
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.text.y = element_text(size = 15),  # Adjust font size if necessary
+    panel.grid = element_blank()  # Removes grid lines for a cleaner look
+  )
+
+
+
+
