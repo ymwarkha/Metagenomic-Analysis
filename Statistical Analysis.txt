@@ -1,0 +1,333 @@
+#Plot Taxonomic graph for Caspian Sea Genus Level
+
+setwd("~/data/FINAL GRAPHS/Caspian Sea and Mediterranean Sea/")
+
+genes <- read.csv(file = "/home/ymwarkha/data/FINAL GRAPHS/Caspian Sea and Mediterranean Sea/Genus_Taxonomy_CaspianSea.csv", sep = ',')
+head(genes)
+all <- genes %>%
+  select(Sample,Genus,fraction_total_reads ) %>%
+  filter(fraction_total_reads != 0)%>%
+  mutate(Genus=ifelse(fraction_total_reads<0.01 , "< 0.01 % ", Genus))%>%
+  group_by(Sample, Genus) %>%  #now group and summarize again to group newly labeled low abundance taxa together
+  summarise(
+    Abundance = sum(fraction_total_reads))
+
+head(all)
+
+Genus_colors <- c(
+  "grey22", "darkcyan", "orchid1", "green", "orange", "blue", "tomato2", "olivedrab", "grey47",
+  "cyan", "coral3", "darkgreen", "magenta", "palegoldenrod", "dodgerblue", "firebrick", "yellow", "purple4",
+  "lightblue", "grey77", "mediumpurple1", "tan4", "red", "darkblue", "yellowgreen")
+
+
+ggplot(all)+
+  geom_col( mapping = aes(x = Sample, y = Abundance, fill = Genus), color = "black", position = "Stack", show.legend = TRUE)+
+  #geom_col(mapping = aes(x = factor(Sample, levels = c("C1_0-4", "C1_4-8", "C2_0-4", "C2_4-8", "C2_8-12", "C2_12-16", "C2_20-24", "C2_30-35")), y = Abundance, fill = Genus), color = "black", position = "Stack", show.legend = TRUE) +
+  ylab("Gene counts") +
+  xlab(NULL)+
+  scale_fill_manual(values = Genus_colors) +
+  theme_linedraw()+
+  theme(axis.text.y = element_text(size = 15, color = "black"),
+        axis.title.y = element_text(size = 15, color = "black"),
+        axis.text.x = element_text(size = 13, angle = 0, vjust = 1, hjust = 0.5, color = "black"),
+        legend.text = element_text(size = 15),
+        legend.position = "bottom",
+        legend.spacing.x = unit(0.1, 'mm'),
+        legend.spacing.y = unit(0.05, 'mm'),
+        plot.margin=grid::unit(c(0.1,0.1,0.1,0.1), "mm"),
+        strip.text = element_text(size = 15, face = "bold", angle = 0),
+        legend.title = element_text(face="bold", size = 15))+
+  guides(fill=guide_legend(ncol=3,byrow=TRUE))+
+  scale_x_discrete(labels=c('C1_0-4','C1_4-8','C2_0-4','C2_4-8','C2_8-12','C2_12-16','C2_20-24','C2_30-35'))
+
+
+#Plot Taxonomic graph for Mediterranean Sea Phylum Level
+
+
+genes <- read.csv(file = "/home/ymwarkha/data/FINAL GRAPHS/Caspian Sea and Mediterranean Sea/Genus_Taxonomy_MedSea.csv", sep = ',')
+head(genes)
+all <- genes %>%
+  select(Sample,Genus,fraction_total_reads ) %>%
+  filter(fraction_total_reads != 0)%>%
+  mutate(Genus=ifelse(fraction_total_reads<0.01, "< 0.01 % " , Genus))%>%
+  group_by(Sample, Genus) %>%  #now group and summarize again to group newly labeled low abundance taxa together
+  summarise(
+    Abundance = sum(fraction_total_reads))
+
+head(all)
+
+Genus_colors <- c(
+  "grey22", "darkcyan", "orchid1", "green", "orange", "blue", "tomato2", "olivedrab", "grey47",
+  "cyan", "coral3", "darkgreen", "magenta", "palegoldenrod", "dodgerblue", "firebrick", "yellow", "purple4",
+  "lightblue", "grey77", "mediumpurple1", "tan4", "red", "darkblue", "yellowgreen")
+
+
+ggplot(all)+
+  geom_col( mapping = aes(x = Sample, y = Abundance, fill = Genus), color = "black", position = "Stack", show.legend = TRUE)+
+  #geom_col(mapping = aes(x = factor(Sample, levels = c("Med_Core_1_0-4", "Med_Core_1_4-8", "Med_Core_1_8-12", "Med_Core_1_12-16", "Med_Core_1_16-20", "Med_Core_1_20-24", "Med_Core_1_24-28")), y = Abundance, fill = Phylum), color = "black", position = "Stack", show.legend = TRUE) +
+  ylab("Gene counts") +
+  xlab(NULL)+
+  scale_fill_manual(values = Genus_colors) +
+  theme_linedraw()+
+  theme(axis.text.y = element_text(size = 15, color = "black"),
+        axis.title.y = element_text(size = 15, color = "black"),
+        axis.text.x = element_text(size = 13, angle = 0, vjust = 1, hjust = 0.5, color = "black"),
+        legend.text = element_text(size = 15),
+        legend.position = "bottom",
+        legend.spacing.x = unit(0.1, 'mm'),
+        legend.spacing.y = unit(0.05, 'mm'),
+        plot.margin=grid::unit(c(0.1,0.1,0.1,0.1), "mm"),
+        strip.text = element_text(size = 15, face = "bold", angle = 0),
+        legend.title = element_text(face="bold", size = 15))+
+  guides(fill=guide_legend(ncol=3,byrow=TRUE))+
+  scale_x_discrete(labels=c('M1_0-4', 'M1_4-8', 'M1_8-12','M1_12-16', 'M1_16-20', 'M1_20-24', 'M1_24-28'))
+
+
+#Taxonomic plot combination of both
+
+
+#load packages
+library(tidyverse)
+#Load data
+Cas_Sea <- read.csv("/home/ymwarkha/data/FINAL GRAPHS/Caspian Sea and Mediterranean Sea/Genus_Taxonomy_CaspianSea.csv",  sep = ',') 
+Med_Sea <- read.csv("/home/ymwarkha/data/FINAL GRAPHS/Caspian Sea and Mediterranean Sea/Genus_Taxonomy_MedSea.csv", sep = ',') 
+
+#Merge 
+mergeMG <- Cas_Sea %>%
+  full_join(Med_Sea) %>%
+  mutate(fraction_total_reads = as.numeric(fraction_total_reads)) %>%
+  filter(fraction_total_reads > 0) %>%
+  mutate(Genus = ifelse(fraction_total_reads < 0.01, "<0.01%", Genus)) %>%
+  group_by(Sample, Genus) %>%
+  summarise(Abundance = sum(fraction_total_reads))
+head(mergeMG)
+dim(mergeMG)
+
+colors10 <- c(
+  "black",      "darkcyan",     "orchid1",     "green",       "blue",   
+  "grey47",     "cyan",         "coral1",      "darkgreen",   "palegoldenrod",    
+  "grey77",     "darkblue",     "orange",      "red",         "mediumpurple1", "tan4",   "purple4",
+  "dodgerblue", "firebrick",    "yellowgreen", "magenta",     "green", "red", "orchid", "lightblue",
+  "darkcyan",     "orchid1",     "green",       "blue",   
+  "grey47",     "cyan",         "coral1",      "darkgreen",   "palegoldenrod",
+  "darkblue",     "orange",      "red",         "mediumpurple1"
+)  
+
+ggplot(mergeMG)+
+  geom_col(mapping = aes(x = Sample, y = Abundance, fill = Genus), 
+           color = "black", position = "stack", show.legend = TRUE)+
+  ylab("Abundance") +
+  scale_fill_manual(values = colors10)+
+  xlab(NULL)+
+  theme_minimal()+
+  theme(axis.text.y.left = element_text(size = 10),
+        axis.text.x = element_text(size = 12, angle = 45, vjust = 0.5, hjust = 0.5, color = "black"),
+        axis.title.y = element_text(size = 12),
+        legend.text = element_text(size = 10),
+        plot.margin=grid::unit(c(0.1,0.1,0.1,0.1), "mm"),
+        strip.text.x = element_text(size = 12, face = "bold", angle = 0),
+        title = element_text(size = 18)) +
+  scale_x_discrete(labels=c('C1_0-4','C1_4-8','C2_0-4','C2_4-8','C2_8-12','C2_12-16','C2_20-24','C2_30-35','M1_0-4', 'M1_4-8', 'M1_8-12','M1_12-16', 'M1_16-20', 'M1_20-24', 'M1_24-28'))
+
+
+
+#Statistical analysis at Genus level
+merge1 <- Cas_Sea %>%
+  full_join(Med_Sea) %>%
+  mutate(fraction_total_reads = as.numeric(fraction_total_reads)) %>%
+  filter(fraction_total_reads > 0) %>%
+  group_by(Sample, Genus) %>%
+  summarise(Abundance = sum(fraction_total_reads))
+head(merge1)
+dim(merge1)
+
+merge1 <- merge1 %>% extract(Sample, c ("sea", "num" , "depth"), "([M|C])([1-2])_(.*)" , remove=FALSE)
+
+
+#Making a supplemental table
+
+tax_summary <- merge1 %>%
+  group_by(sea, num, depth , Genus) %>% 
+  filter(Abundance > 0.01) %>%
+  pivot_wider(names_from = Sample, values_from = Abundance, values_fill = 0)
+head(tax_summary)
+
+#Calculating alpha diversity
+library(phyloseq)
+library(ape)
+library(ggh4x)
+library(vegan)
+
+
+merge2 <- merge1 %>%
+  mutate(UniqueID = Sample) %>%
+  ungroup()
+head(merge2)
+
+sdata <- merge2 %>%
+  select(UniqueID, Sample , sea, num, depth) %>%
+  unique() %>%
+  column_to_rownames(var ="UniqueID")
+head(sdata)
+
+sequence_table <- merge2 %>%
+  mutate(Percent_of_Community = as.integer(Abundance*10000)) %>%
+  select(UniqueID, Genus, Percent_of_Community) %>%
+  filter(Percent_of_Community > 0) %>%
+  group_by(UniqueID) %>%
+  pivot_wider(names_from = Genus, values_from = Percent_of_Community, values_fill = 0) %>%
+  column_to_rownames("UniqueID")
+head(sequence_table)
+
+
+taxa_table <- colnames(sequence_table) %>%
+  as.matrix()
+head(taxa_table)
+dim(taxa_table)
+
+
+#metadata
+samdata = sample_data(sdata)
+
+#asv table
+colnames(sequence_table) <- NULL
+seqtab = otu_table(sequence_table, taxa_are_rows = FALSE)
+seqtab[1:15,1:8]
+taxa_names(seqtab)
+
+
+#taxa table
+taxtab = tax_table(taxa_table)
+taxa_names(taxtab)
+dim(taxtab)
+
+
+physeq = phyloseq(otu_table(seqtab), tax_table(taxtab), sample_data(samdata))
+physeq
+
+
+alpha_div <- estimate_richness(physeq, measures = c("Observed", "Shannon")) %>%
+  rownames_to_column(var = "Sample") %>%
+  left_join(sdata,by="Sample")
+head(sdata)
+head(alpha_div)
+
+colors <- c("chocolate", "darkcyan", "maroon3", "olivedrab2", "orange")
+
+
+ggplot(alpha_div, aes(x = Sample, y = Observed))+
+  #facet_nested(cols = vars(sea))+
+  geom_boxplot()+
+  geom_point(aes(fill = depth), shape = 21, size = 4, position=position_jitter(h=0,w=0)) +
+  #scale_shape_manual(values = c(21, 23))+
+  theme_linedraw()+                                                                    #change theme
+  xlab(NULL)+                                                                          #no label on x-axis
+  #scale_fill_manual(values = colors)+                                                  #set fill colors
+  #ggtitle("Alpha Diversity") +                                                        #add title
+  theme(strip.text.x = element_text(face = "bold", size = 25, color = "black"),
+        strip.background = element_rect(fill = "white"),
+        axis.text.x = element_text(size = 10, angle = 70, hjust = 0.5, vjust = 0.5),    #adjust x-axis text
+        axis.title.y = element_text(size = 20),                                        #adjust y-axis title
+        axis.text.y = element_text(size = 15),                                         #adjust y-axis text
+        legend.text = element_text(size = 15),                                         #adjust legend text size
+        legend.title = element_text(size = 22),                                        #adjust legend title size
+        legend.position = "bottom",
+        plot.title=element_text(size = 25, face = "bold", hjust = 0.5)) +              #change title size, face and position
+  guides(fill = guide_legend(override.aes=list(shape = 21)))+
+  scale_x_discrete(labels=c('C1_0-4','C1_4-8','C2_0-4','C2_4-8','C2_8-12','C2_12-16','C2_20-24','C2_30-35','M1_0-4', 'M1_4-8', 'M1_8-12','M1_12-16', 'M1_16-20', 'M1_20-24', 'M1_24-28'))
+
+
+#Shannon
+ggplot(alpha_div, aes(x = Sample, y = Shannon))+
+  #facet_nested(cols = vars(Enrichment))+
+  geom_boxplot()+
+  geom_point(aes(fill = depth), shape = 21, size = 4, position=position_jitter(h=0,w=0)) +
+  #scale_shape_manual(values = c(21, 23))+
+  theme_linedraw()+                                                                    #change theme
+  xlab(NULL)+                                                                          #no label on x-axis
+  #scale_fill_manual(values = colors)+                                                  #set fill colors
+  #ggtitle("Alpha Diversity") +                                                        #add title
+  theme(strip.text.x = element_text(face = "bold", size = 25, color = "black"),
+        strip.background = element_rect(fill = "white"),
+        axis.text.x = element_text(size = 10, angle = 70, hjust = 0.5, vjust = 0.5),    #adjust x-axis text
+        axis.title.y = element_text(size = 20),                                        #adjust y-axis title
+        axis.text.y = element_text(size = 15),                                         #adjust y-axis text
+        legend.text = element_text(size = 15),                                         #adjust legend text size
+        legend.title = element_text(size = 22),                                        #adjust legend title size
+        legend.position = "bottom",
+        plot.title=element_text(size = 25, face = "bold", hjust = 0.5)) +              #change title size, face and position
+  guides(fill = guide_legend(override.aes=list(shape = 21)))+
+  scale_x_discrete(labels=c('C1_0-4','C1_4-8','C2_0-4','C2_4-8','C2_8-12','C2_12-16','C2_20-24','C2_30-35','M1_0-4', 'M1_4-8', 'M1_8-12','M1_12-16', 'M1_16-20', 'M1_20-24', 'M1_24-28'))
+
+
+#Kruskal-Wallis Statistic
+
+#Observed
+kruskal.test(Observed ~ sea, data = alpha_div) 
+
+#Shannon
+kruskal.test(Shannon ~ sea, data = alpha_div)
+
+
+#Plotting a Bray Curtis ordination
+
+#ordination
+all_pcoa <- ordinate(
+  physeq = physeq, 
+  method = "PCoA", 
+  distance = "bray"
+)
+
+
+head(sample_data(ww))
+#plot
+plot_ordination(
+  physeq = physeq,                                                          #phyloseq object
+  ordination = all_pcoa)+                                                #ordination
+  geom_point(aes(fill = depth, shape = sea), size = 6) +                         #sets fill color to sampletype
+  #scale_fill_manual(values = colors) +
+  scale_shape_manual(values = c(21, 23))+
+  theme_classic() +                                                      #changes theme, removes grey background
+  theme(                             
+    legend.text = element_text(size = 20),                               #changes legend size
+    legend.title = element_blank(),                                      #removes legend title
+    legend.background = element_rect(fill = "white", color = "black"))+  #adds black boarder around legend
+  theme(axis.text.y.left = element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20))+
+  guides(fill = guide_legend(override.aes = list(shape = 21)))           #fills legend points based on the fill command
+
+#PERMANOVA (Cas vs Med)
+# Calculate bray curtis distance matrix
+bray <- phyloseq::distance(physeq, method = "bray")
+
+# make a data frame from the sample_data, all samples
+sam <- data.frame(sample_data(physeq))
+
+# Adonis test, all samples
+result <- adonis2(bray ~ sea, data = sam)
+result
+
+
+
+
+#PERMANOVA (depth in cas)
+# Subset samples
+subset <- subset_samples(physeq, sea ==  "C")
+
+# Calculate bray curtis distance matrix
+bray <- phyloseq::distance(subset, method = "bray")
+
+# make a data frame from the sample_data, all samples
+sam <- data.frame(sample_data(subset))
+
+# Adonis test, all samples
+result <- adonis2(bray ~ depth, data = sam)
+result
+
+
+
+
+
+
